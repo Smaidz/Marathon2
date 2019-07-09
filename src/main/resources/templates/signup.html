@@ -1,7 +1,7 @@
 <html xmlns:th="www.thymeleaf.org">
 
 	<body>
-		<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+		<form action="#" th:action="@{/u/signup}" th:object="${user}" method="post">
 		<div class="container">
 
 
@@ -26,7 +26,6 @@
                     th:text="${gender}">
         </option>
     </select>
- 			<!-- <input type="gender" name="gender" required th: -->
  
     		<label for="email"><b>Email</b></label>
     		<input type="email" placeholder="email@domain.com" name="email" required th:field="*{email}">
@@ -35,24 +34,39 @@
     		<input type="password" placeholder="Password" id="password" name="psw" required th:field="*{password}">
  
     		<label for="password-repeat"><b>Repeat Password</b></label>
-    		<input type="password" placeholder="Repeat Password" id="password_repeat" name="psw-repeat" oninput="check(this)" required>
+    		<input type="password" placeholder="Repeat Password" id="password_repeat" name="psw-repeat"  required>
     
     		<hr>
     		<button type="submit" class="registerbtn">Register</button>
     
   		</div>
   		</form>
+  		
+  		
 	</body>
 	<script type="text/javascript">
 	var password = document.getElementById("password"), confirm_password = document.getElementById("password_repeat");
 	
+
+	
+	function passwordLength(){
+		var passLength = password.value.length;
+		if (passLength > 7){
+			password.setCustomValidity('');
+		} else {
+			password.setCustomValidity("Password too short");
+		}
+	}
+	
 	function validatePassword() {
+		
 		if (password.value != confirm_password.value) {
 			confirm_password.setCustomValidity("Passwords Don't Match");
 		} else {
 			confirm_password.setCustomValidity('');
 		}
 	}
+	password.onkeyup = passwordLength;
 	password.onchange = validatePassword;
 	confirm_password.onkeyup = validatePassword;
 	

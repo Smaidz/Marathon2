@@ -1,17 +1,21 @@
 package com.example.demo.model;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.ManyToAny;
 
 import com.example.demo.model.enumerator.Gender;
 
@@ -58,7 +62,21 @@ public class User {
 	@Column(name="Gender_Usr")
 	Gender gender;
 	
-
+	@ManyToMany(mappedBy="marathonParticipants")
+	Collection<Marathon> marathons;
+	
+	public User() {}
+	
+	
+	public User(String name, String surname, String email, 
+			String password, String birthDate, Gender gender) {
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+		this.birthDate = birthDate;
+		this.gender = gender;
+	}
 	public String getName() {
 		return name;
 	}
