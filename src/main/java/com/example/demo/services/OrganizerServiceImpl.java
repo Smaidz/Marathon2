@@ -103,7 +103,7 @@ public class OrganizerServiceImpl implements OrganizerService{
 	@Override
 	public boolean exportDataExcel()
 	{
-		final String FILE_NAME = "MarathonExcel.xlsx";
+		//final String FILE_NAME = "MarathonExcel.xlsx";
 
 	        XSSFWorkbook workbook = new XSSFWorkbook();
 	        XSSFSheet sheet = workbook.createSheet("Marathon info");
@@ -114,49 +114,28 @@ public class OrganizerServiceImpl implements OrganizerService{
 			{
 				tempList.add(m);
 			}
-			/*
-	        ArrayList<Marathon> tempList = new ArrayList<Marathon>();
-			for (Marathon m:marathonRepo.findAll())
-			{
-				tempList.add(m);
-			}
-			int k=(int) marathonRepo.count();
-			Marathon[][] maratoni =new Marathon [k][3];
-			for (int i=0; i<k;i++)
-			{
-				for(int j=0; j<3;j++)
-				{
-					maratoni[i][j];
-				}
-			}
-			*/
 			
-			
-			/*maratoni = {
-	                {maratoni.getName(), maratoni.getPlace(), maratoni.getDistance()},
-	                {"Big", "Jelgava", 7},
-	                {"Tet", "Riga", 4},
-	                {"Kalnu", "Valmiera", 8},
-	                {"Ultra", "Sigulda", 20},
-	                {"Seb", "Balvi", 40}
-	        };
-			*/
-	        int rowNum = 1;
+	        int rowNum = 0;
 	        System.out.println("Creating excel");
 
-	        for (int i = 1; i <= tempList.size(); i++) {
+	        for (int i = 1; i <=tempList.size(); i++) {
 				Marathon maratoni1 = tempList.get(i-1);
-				Row row = sheet.createRow(rowNum);
+				Row row = sheet.createRow(rowNum++);
 	            int colNum = 0;
 	            
-	                Cell cell = row.createCell(colNum);
-	                cell.setCellValue(maratoni1.getName());
-	                Cell cell2 = row.createCell(colNum);
-	                cell2.setCellValue(maratoni1.getPlace());
-	                rowNum++;
-	             
+	            Cell cell0 = row.createCell(colNum++);
+                cell0.setCellValue(maratoni1.getId_mar());
+	            Cell cell = row.createCell(colNum++);
+	            cell.setCellValue(maratoni1.getName());
+	            Cell cell2 = row.createCell(colNum++);
+	            cell2.setCellValue(maratoni1.getPlace());
+	            Cell cell3 = row.createCell(colNum++);
+	            cell3.setCellValue(maratoni1.getDistance());
+	            Cell cell4 = row.createCell(colNum++);
+	            cell4.setCellValue(maratoni1.getDate());
+	            Cell cell5 = row.createCell(colNum++);
+	            cell5.setCellValue(maratoni1.getTime());
 			}
-	        
 	        
 	        /*for (Marathon [] maratoni1 : maratoni) {
 	            Row row = sheet.createRow(rowNum++);
@@ -173,7 +152,10 @@ public class OrganizerServiceImpl implements OrganizerService{
 	        */
 
 	        try {
-	            FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+	        	//File file = new File("D:/data/file.xlsx");
+	        	File file = new File("/home/zane/Project/MarathonInfoSystem/src/main/resources/Maratoni.xlsx");
+	            FileOutputStream outputStream = new FileOutputStream(file);
+	            //FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
 	            workbook.write(outputStream);
 	            workbook.close();
 	        } catch (FileNotFoundException e) {
