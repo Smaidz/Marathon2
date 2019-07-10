@@ -1,0 +1,76 @@
+<html xmlns:th="www.thymeleaf.org">
+
+	<body>
+		<form action="#" th:action="@{/u/signup}" th:object="${user}" method="post">
+		<div class="container">
+
+
+    		<h1>Register</h1>
+    		<p>Please fill in this form to create an account.</p>
+    	<hr>
+    
+    		<label for="name"><b>Name</b></label>
+    		<input type="text" placeholder="Name" name="name" required th:field="*{name}">
+    		
+    		<label for="surname"><b>Surname</b></label>
+    		<input type="text" placeholder="Surname" name="surname" required th:field="*{surname}">
+    		
+    		<label for="birthdate"><b>Date of birth</b></label>
+ 			<input type="date" placeholder="Date" name="date-of-birth" required th:field="*{birthDate}">
+ 
+ 			<label for="gender"><b>Gender</b></label>
+ 			 <select class="form-control" th:field="*{gender}">
+            <option th:each="gender : ${T(com.example.demo.model.enumerator.Gender).values()}"
+                    th:value="${gender}"
+                    th:selected="${gender == T(com.example.demo.model.enumerator.Gender)}"
+                    th:text="${gender}">
+        </option>
+    </select>
+ 
+    		<label for="email"><b>Email</b></label>
+    		<input type="email" placeholder="email@domain.com" name="email" required th:field="*{email}">
+ 
+    		<label for="password"><b>Password</b></label>
+    		<input type="password" placeholder="Password" id="password" name="psw" required th:field="*{password}">
+ 
+    		<label for="password-repeat"><b>Repeat Password</b></label>
+    		<input type="password" placeholder="Repeat Password" id="password_repeat" name="psw-repeat"  required>
+    
+    		<hr>
+    		<button type="submit" class="registerbtn">Register</button>
+    
+  		</div>
+  		</form>
+  		
+  		
+	</body>
+	<script type="text/javascript">
+	var password = document.getElementById("password"), confirm_password = document.getElementById("password_repeat");
+	
+
+	
+	function passwordLength(){
+		var passLength = password.value.length;
+		if (passLength > 7){
+			password.setCustomValidity('');
+		} else {
+			password.setCustomValidity("Password too short");
+		}
+	}
+	
+	function validatePassword() {
+		
+		if (password.value != confirm_password.value) {
+			confirm_password.setCustomValidity("Passwords Don't Match");
+		} else {
+			confirm_password.setCustomValidity('');
+		}
+	}
+	password.onkeyup = passwordLength;
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
+	
+</script>
+ </html>
+ 
+ 
