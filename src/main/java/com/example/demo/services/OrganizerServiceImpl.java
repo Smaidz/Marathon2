@@ -1,11 +1,14 @@
 package com.example.demo.services;
 
+
 import java.util.ArrayList;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Marathon;
+
 import com.example.demo.model.Organizer;
 import com.example.demo.repo.MarathonRepo;
 import com.example.demo.repo.OrganizerRepo;
@@ -20,10 +23,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.example.demo.repo.MarathonRepo;
+
+
 @Service
 public class OrganizerServiceImpl implements OrganizerService{
 
 	@Autowired
+
 	OrganizerRepo organizerRepo;
 	@Autowired
 	MarathonRepo marathonRepo;
@@ -183,3 +190,20 @@ public class OrganizerServiceImpl implements OrganizerService{
 
 	
 }
+
+	MarathonRepo marathonRepo;
+	@Override
+	public boolean insertNewMarathon(Marathon marathon) {
+		if(marathon == null) {
+			return false;
+		}
+		if(marathonRepo.existsById(marathon.getId())) {
+			return false;
+		}else {
+			marathonRepo.save(marathon);
+			return false;
+		}
+	}
+	
+}
+

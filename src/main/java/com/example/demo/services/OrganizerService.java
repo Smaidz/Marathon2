@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import java.util.ArrayList;
 
+import com.example.demo.model.Marathon;
 import com.example.demo.model.Organizer;
 
 public interface OrganizerService {
@@ -12,4 +13,5 @@ public interface OrganizerService {
 	boolean deleteOrganizerById_org(long id_org);
 	boolean deleteOrganizerByObject(Organizer organizer);
 	boolean exportDataExcel();
+	boolean insertNewMarathon(Marathon marathon);
 }
