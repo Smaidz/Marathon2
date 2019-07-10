@@ -34,7 +34,7 @@ public class EmailController {
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
          
-        helper.setTo("mail-goes-here");
+        helper.setTo("bootmarathoninfo@gmail.com");
         helper.setText("How are you?");
         helper.setSubject("Hi");
          
@@ -56,20 +56,16 @@ public class EmailController {
     private void sendEmail2() throws Exception{
         MimeMessage message = sender.createMimeMessage();
          
-        // Enable the multipart flag!
+        // Enable the multipart flag! 	
         MimeMessageHelper helper = new MimeMessageHelper(message,true);
          
-        helper.setTo("mail-goes-here");
+        helper.setTo("bootmarathoninfo@gmail.com");
         helper.setText("This is a test");
         helper.setSubject("^ What he said ^");
          
-        ClassPathResource file = new ClassPathResource("3f5.jpg");
-        helper.addAttachment("3f5.jpg", file);
+        ClassPathResource file = new ClassPathResource("testscreen-large.jpg");
+        helper.addAttachment("testscreen-large", file);
         
-        /*FileSystemResource file 
-        = new FileSystemResource(new File(pathToAttachment));
-        helper.addAttachment("Invoice", file); */
-        //TODO make this work
          
         sender.send(message);
 }
