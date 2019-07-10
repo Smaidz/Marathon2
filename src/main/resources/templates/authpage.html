@@ -1,0 +1,38 @@
+<html xmlns:th="www.thymeleaf.org">
+<link href="/demo/src/main/resources/templates/css/authpage.css" rel="stylesheet" />
+<body>
+ 
+<form action="#" th:action="@{/u/authpage}" th:object="${user}" method="post">
+ 
+<h2>Log in page</h2>
+ 
+  <div class="container">
+ 
+    <label for="email"><b>Email</b></label>
+    <input type="email" placeholder="Email" name="email" required th:field="*{email}"/>
+ 
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Password" name="password" required th:field="*{password}"/>
+  </div>
+ 
+<div class="container">
+<button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+ 
+</div>
+ 
+  <div class="container" style="background-color:#f1f1f1">
+    <span class="password">Forgot <a href="#">password?</a></span>
+  </div>
+ 
+ 
+ 
+</form>
+
+
+</script>
+
+</body>
+</html>
