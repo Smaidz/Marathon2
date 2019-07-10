@@ -115,13 +115,28 @@ public class OrganizerServiceImpl implements OrganizerService{
 				tempList.add(m);
 			}
 			
-	        int rowNum = 0;
+	        int rowNum = 1;
 	        System.out.println("Creating excel");
-
+	        
+	        Row row = sheet.createRow(rowNum++);
+	        int colNum = 0;
+	        Cell cellid = row.createCell(colNum++);
+            cellid.setCellValue("Marathon ID");
+            Cell celln = row.createCell(colNum++);
+            celln.setCellValue("Name");
+            Cell cellp = row.createCell(colNum++);
+            cellp.setCellValue("Place");
+            Cell celldi= row.createCell(colNum++);
+            celldi.setCellValue("Distance");
+            Cell cellda = row.createCell(colNum++);
+            cellda.setCellValue("Date");
+            Cell cellt= row.createCell(colNum++);
+            cellt.setCellValue("Time");
+	        
 	        for (int i = 1; i <=tempList.size(); i++) {
 				Marathon maratoni1 = tempList.get(i-1);
-				Row row = sheet.createRow(rowNum++);
-	            int colNum = 0;
+				row = sheet.createRow(rowNum++);
+	            colNum = 0;
 	            
 	            Cell cell0 = row.createCell(colNum++);
                 cell0.setCellValue(maratoni1.getId_mar());
